@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <!-- <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script> -->
-  <script src="http://api.map.baidu.com/api?v=3.0&ak=3GG2gig09zYfcWt7iPiYM3s2EnrI9mAW"></script>
+  <script src="https://api.map.baidu.com/api?v=3.0&ak=3GG2gig09zYfcWt7iPiYM3s2EnrI9mAW"></script>
   <style>
     * {
       margin: 0;
@@ -54,7 +54,7 @@
           let JSONP = document.createElement("script")
           JSONP.type = "text/javascript"
           JSONP.src =
-            `http://api.map.baidu.com/geocoder/v2/?callback=${callbackName}&location=${res.points[0].lat},${res.points[0].lng}&output=json&pois=1&ak=3GG2gig09zYfcWt7iPiYM3s2EnrI9mAW`
+            `https://api.map.baidu.com/geocoder/v2/?callback=${callbackName}&location=${res.points[0].lat},${res.points[0].lng}&output=json&pois=1&ak=3GG2gig09zYfcWt7iPiYM3s2EnrI9mAW`
           document.getElementsByTagName("head")[0].appendChild(JSONP);
           setTimeout(() => {
             document.getElementsByTagName("head")[0].removeChild(JSONP)
