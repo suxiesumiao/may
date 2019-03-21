@@ -120,7 +120,7 @@
     getCurrentPosition().then(res => {
       span_la.innerText = res.coords.latitude;
       span_lo.innerText = res.coords.longitude;
-      console.log(1);
+      alert(1);
       getCurrentPositionInbaidu({
         coords: {
           latitude: res.coords.latitude,
@@ -129,7 +129,7 @@
       }).then(res => {
         span_la.innerText = res.result.location.lat;
         span_lo.innerText = res.result.location.lng;
-        console.log(2);
+        alert(2);
         draw({
           lat: res.result.location.lat,
           lng: res.result.location.lng
@@ -149,7 +149,7 @@
             }).then(res => {
               span_la.innerText = res.result.location.lat;
               span_lo.innerText = res.result.location.lng;
-              console.log(3);
+              alert(3);
               draw({
                 lat: res.result.location.lat,
                 lng: res.result.location.lng
