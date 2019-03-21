@@ -40,6 +40,7 @@
         const gpsPoint = new BMap.Point(position.coords.longitude, position.coords.latitude);
         const convertor = new BMap.Convertor();
         convertor.translate([gpsPoint], 1, 5, function (res) {
+          alert('translated')
           resolve(res)
         })
       })
@@ -119,6 +120,7 @@
     getCurrentPosition().then(res => {
       span_la.innerText = res.coords.latitude;
       span_lo.innerText = res.coords.longitude;
+      alert(1);
       getCurrentPositionInbaidu({
         coords: {
           latitude: res.coords.latitude,
@@ -127,6 +129,7 @@
       }).then(res => {
         span_la.innerText = res.result.location.lat;
         span_lo.innerText = res.result.location.lng;
+        alert(2);
         draw({
           lat: res.result.location.lat,
           lng: res.result.location.lng
@@ -146,13 +149,14 @@
             }).then(res => {
               span_la.innerText = res.result.location.lat;
               span_lo.innerText = res.result.location.lng;
+              alert(3);
               draw({
                 lat: res.result.location.lat,
                 lng: res.result.location.lng
               });
             });
           } else {
-            alert("failed" + this.getStatus());
+            alert("failed " + this.getStatus());
           }
         }, {
           enableHighAccuracy: true
