@@ -8,6 +8,8 @@
   <title>Document</title>
   <!-- <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script> -->
   <script src="https://api.map.baidu.com/api?v=3.0&ak=3GG2gig09zYfcWt7iPiYM3s2EnrI9mAW"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.2/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -24,15 +26,54 @@
       position: fixed;
       z-index: 2;
     }
+
+    img {
+      display: block;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
   </style>
 </head>
 
 <body>
   <div id="coords">
-    <img src="http://medical-public-bucket.oss-cn-beijing.aliyuncs.com/system/article_thumbnail/o_1d6sbdd11ps9tfticdd6218t3p.jpg" alt="">
-    <span id="span_lo"></span>,<span id="span_la"></span>
+    <!-- <span id="span_lo"></span>,<span id="span_la"></span> -->
+    <div id="main">
+      <span>{{ message }}</span>
+      <div class="wraper" v-for="(item, index) in list" :key="index">
+        <img :src="item.headfiles.showUrl" alt="">
+      </div>
+    </div>
   </div>
   <div id="mapcontainer"></div>
+  <script>
+    const vm = new Vue({
+      el: "#main",
+      data: {
+        message: "Hello",
+        list: []
+      },
+      mounted() {
+        this.render();
+      },
+      methods: {
+        render() {
+          axios({
+            url: "https://api.ppg666.com/user/patient/pushDoctorList"
+          }).then(res => {
+            this.list = res.data.data;
+            this.list.forEach((item, index, self) => {
+              if (item.headfiles[0]) {
+                item.headfiles = JSON.parse(item.headfiles[0])
+              }
+            });
+            console.log(this.list)
+          })
+        }
+      }
+    })
+  </script>
   <!-- <script>
     const callbackName = "renderReverseBaidu";
 
